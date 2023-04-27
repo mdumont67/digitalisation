@@ -18,12 +18,12 @@ class MainController extends AbstractController
         $search = null;
         $form = $this->createForm(SearchCompanyType::class, $search);
         $form->handleRequest($request);
+        $companies = $companyRepo->findBy([], ['id'=> 'DESC'], 10);
         if ($form->isSubmitted() && $form->isValid()) { 
             $search = $form->get('search')->getData();
             if ($search) {
                 $companies = $companyRepo->findCompanies($search);
             }else{
-                $companies = null;
                 $this->addFlash(
                    'error',
                    'Les recherches vides ne sont pas prises en compte'
@@ -36,7 +36,8 @@ class MainController extends AbstractController
             ]);
         }
         return $this->render('main/index.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'companies' => $companies,
         ]);
     }
 
