@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Gestion des questionnaires{% endblock %}
+
+{% block body %}
+    <h1 class='my-5'>Gestion des questionnaires</h1>
+
+    <ul class='list-group'>
+        <li class= 'list-group-item'><a class='btn btn-outline-secondary my-2' href="{{path('quiz_list')}}">Questionnaires</a></li>
+        <li class= 'list-group-item'><a class='btn btn-outline-secondary my-2' href="{{path('quiz_axis_list')}}">Axes</a></li>
+        <li class= 'list-group-item'><a class='btn btn-outline-secondary my-2' href="{{path('quiz_category_list')}}">Catégories</a></li>
+        <li class= 'list-group-item'><a class='btn btn-outline-secondary my-2' href="{{path('quiz_question_list')}}">Questions</a></li>
+    </ul>
+
+{% endblock %}

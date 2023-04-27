@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des categories{% endblock %}
+
+{% block body %}
+
+    <h1 class="my-4">Liste des categories</h1>
+
+    <a href="{{path('quiz_category_edit')}}" class="btn btn-success mb-2"><i class="fa-solid fa-plus"></i> Créer une nouvelle categorie</a>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Nom</th>
+            <th>Axe principal</th>
+            <th>Actions</th>
+        </tr>
+        {% for category in categories %}
+            <tr>
+                <td>{{category.label}}</td>
+                <td>{{category.axis.label}}</td>
+                <td>
+                    <a class='btn btn-primary' href="{{path('quiz_category_edit', {category:category.id})}}"><i class="fa-solid fa-pen-nib"></i></a>
+                </td>
+            </tr>
+        {% else %}
+        <p>Aucune categorie enregistrée pour le moment</p>
+        {% endfor %}
+            
+    </table>
+{% endblock %}

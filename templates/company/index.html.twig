@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des entreprises{% endblock %}
+
+{% block body %}
+
+    <h1 class="my-4">Liste des entreprises</h1>
+
+    <a href="{{path('company_edit')}}" class="btn btn-success mb-2"><i class="fa-solid fa-plus"></i> Créer une nouvelle entreprise</a>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Nom</th>
+            <th>Adresse</th>
+            <th>Domaine</th>
+            <th>Actions</th>
+        </tr>
+        {% for company in companies %}
+            <tr>
+                <td>{{company.label}}</td>
+                <td>{{company.address}}</td>
+                <td>{{company.business}}</td>
+                <td>
+                    <a class='btn btn-primary' href="{{path('company_edit', {company:company.id})}}"><i class="fa-solid fa-pen-nib"></i></a>
+                </td>
+            </tr>
+        {% else %}
+        <p>Aucune entreprise enregistrée pour le moment</p>
+        {% endfor %}
+            
+    </table>
+{% endblock %}

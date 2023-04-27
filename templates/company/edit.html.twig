@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des entreprises{% endblock %}
+
+{% block body %}
+
+    <h1 class="my-4">{{company.id ? 'Modification ' : 'Création '}}d'une entreprises</h1>
+
+
+    {{form_start(form)}}
+
+    {{form_row(form, {'label': false})}}
+
+    <input class= 'btn btn-success' type="submit" value="Valider">
+
+    {{form_end(form)}}
+{% endblock %}

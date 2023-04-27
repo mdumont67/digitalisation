@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des questionnaires{% endblock %}
+
+{% block body %}
+
+    <h1 class="my-4">Liste des questionnaires</h1>
+
+    <a href="{{path('quiz_choice')}}" class="btn btn-success mb-2"><i class="fa-solid fa-plus"></i> Créer un nouveau questionnaire</a>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Entreprise</th>
+            <th>Actions</th>
+        </tr>
+        {% for quiz in quizs %}
+            <tr>
+                <td>{{quiz.company.label}}</td>
+                <td>
+                    <a class='btn btn-primary' href="{{path('quiz_choice', {quiz:quiz.id})}}"><i class="fa-solid fa-pen-nib"></i></a>
+                </td>
+            </tr>
+        {% else %}
+        <p>Aucune questionnaire enregistré pour le moment</p>
+        {% endfor %}
+            
+    </table>
+{% endblock %}

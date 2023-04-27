@@ -1,0 +1,42 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Entreprise {{company.label}}{% endblock %}
+
+{% block body %}
+    <h1 class="my-5">Entreprise {{company.label}}</h1>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Nom de l'entreprise</th>
+            <th>Adresse</th>
+            <th>Domaine d'activité</th>
+        </tr>
+        <tr>
+            <td>{{company.label}}</td>
+            <td>{{company.address}}</td>
+            <td>{{company.business}}</td>
+        </tr>
+    </table>
+    <ul class="list-group">
+        {% for axe in axis %}
+            <li class="list-group-items">
+                {{axe.label}} = {% if axisRating[axe.id] is defined %} 
+                    {{axisRating[axe.id]}} / 5;
+                {% else %}
+                    La partie {{axe.label}} n'a pas encore été remplie
+                    {% endif %}
+                {% endfor %}
+            </li>
+    </ul>
+
+    <p class="my-3">
+        {% if quiz %}
+            <a href="{{path('quiz_choice', {quiz:quiz.id})}}" class="btn btn-primary"> Continuer le questionnaire</a>
+        {% else %}
+            <a href="{{path('quiz_choice')}}" class="btn btn-primary"> Remplir le questionnaire</a>
+        {% endif %}
+        
+    </p>
+    
+
+{% endblock %}

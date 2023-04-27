@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Groupe 7{% endblock %}
+
+{% block body %}
+    <div class="container-fluid d-flex  flex-column align-items-center">
+        <h1 class="my-5">Étude de la digitalisation des entreprises</h1>
+        {{form(form)}}
+        {% if companies is defined %}
+            <div class='w-100'>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Nom de l'entreprise</th>
+                        <th>Adresse</th>
+                        <th>Domaine d'activité</th>
+                        <th>Détails</th>
+                    </tr>
+                {% for company in companies %}
+                    <tr>
+                        <td>{{company.label}}</td>
+                        <td>{{company.address}}</td>
+                        <td>{{company.business}}</td>
+                        <td><a href="{{path('company_details', {company: company.id})}}" class='btn btn-primary'><i class="fa-solid fa-eye"></i></a></td>
+                    </tr>
+                {% else %}
+                    Aucun résultat
+                
+                {% endfor %}
+                </table>
+            </div>
+        {% endif %}
+        
+        
+    </div>
+{% endblock %}

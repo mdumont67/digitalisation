@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des questionnaires{% endblock %}
+
+{% block body %}
+
+    <h1 class="my-4">{{axis.label}}</h1>
+
+    {{form_start(form)}}
+    
+    {% if not quiz.company %}
+        {{form_row(form.company, {label:false})}}
+    {% endif %}
+    {% for category in categories %}
+        <span class='my-4 fw-bold '>{{category.label}}</span>
+        {% for question in form.quizQuestions %}
+            {% if question.vars.data.question.category.id is same as(category.id) %}
+                {{form_row(question, {label: false})}}
+            {% endif %}
+        {% endfor %}
+        
+    {% endfor %}
+
+    <input type="submit" value="Valider" class="btn btn-success mt-1 mb-5">
+
+    {{form_end(form)}}
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des axes{% endblock %}
+
+{% block body %}
+
+    <h1 class="my-4">Liste des axes</h1>
+
+    <a href="{{path('quiz_axis_edit')}}" class="btn btn-success mb-2"><i class="fa-solid fa-plus"></i> Créer un nouvel axe</a>
+
+    <table class="table table-striped">
+        <tr>
+            <th>Nom</th>
+            <th>Actions</th>
+        </tr>
+        {% for axe in axis %}
+            <tr>
+                <td>{{axe.label}}</td>
+                <td>
+                    <a class='btn btn-primary' href="{{path('quiz_axis_edit', {axis:axe.id})}}"><i class="fa-solid fa-pen-nib"></i></a>
+                </td>
+            </tr>
+        {% else %}
+        <p>Aucune axe enregistré pour le moment</p>
+        {% endfor %}
+            
+    </table>
+{% endblock %}

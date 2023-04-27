@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Choix de l'axe{% endblock %}
+
+{% block body %}
+
+    <h1 class="my-4">Choix de l'axe</h1>
+
+    {{form_start(form)}}
+
+    {{form_row(form, {label: false})}}
+
+    <input type="submit" value="Valider" class="btn btn-success">
+
+    {{form_end(form)}}
+    
+{% endblock %}
