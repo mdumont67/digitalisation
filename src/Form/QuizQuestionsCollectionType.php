@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\QuizQuestions;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\RangeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -20,13 +21,22 @@ class QuizQuestionsCollectionType extends AbstractType
                 $data = $event->getData();
                 $label = $data->getQuestion()->getLabel();
                 $builder
-                    ->add('rating', RangeType::class, [
+                    ->add('rating', ChoiceType::class, [
                         'label' => $label,
-                        'attr' => [
-                            'min' => 1,
-                            'max' => 5,
+                        'choices' => [
+                            '0' => 0,
+                            '1' => 1,
+                            '2' => 2
                         ], 
+                        'required'=> true
                     ]);
+                    // ->add('rating', RangeType::class, [
+                    //     'label' => $label,
+                    //     'attr' => [
+                    //         'min' => 0,
+                    //         'max' => 2,
+                    //     ], 
+                    // ]);
             }
         });
     }

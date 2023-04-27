@@ -20,7 +20,7 @@ class SearchCompanyType extends AbstractType
                 'attr'=> [
                     'placeholder'=> 'Recherche',
                 ],
-                'help' => 'Rechercher une entreprise ("cirpe" par exemple)'
+                'help' => 'Rechercher une entreprise'
             ])
         ;
     }

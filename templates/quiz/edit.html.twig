@@ -16,6 +16,7 @@
         {% for question in form.quizQuestions %}
             {% if question.vars.data.question.category.id is same as(category.id) %}
                 {{form_row(question, {label: false})}}
+                <p class='fw-bold'></p>
             {% endif %}
         {% endfor %}
         
@@ -25,4 +26,14 @@
 
     {{form_end(form)}}
 
+<script>
+let ranges = document.querySelectorAll('input[id$=_rating]');
+ranges.forEach(range =>{
+    range.setAttribute('title', range.value)
+    range.addEventListener('click', () => {
+        range.setAttribute('title', range.value);
+    })
+})
+
+</script>
 {% endblock %}

@@ -21,13 +21,47 @@
         {% for axe in axis %}
             <li class="list-group-items">
                 {{axe.label}} = {% if axisRating[axe.id] is defined %} 
-                    {{axisRating[axe.id]}} / 5;
+                    {{axisRating[axe.id]}} / 2;
                 {% else %}
                     La partie {{axe.label}} n'a pas encore été remplie
                     {% endif %}
                 {% endfor %}
             </li>
     </ul>
+
+    <div data-axis = {{axisRating |serialize(format = 'json')}} data-name = {{axisName |serialize(format = 'json')}} id='dataRating'>
+        <canvas id="myChart" ></canvas>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('myChart');
+let rating = document.querySelector('#dataRating').dataset.axis;
+let names = document.querySelector('#dataRating').dataset.name;
+names = JSON.parse(names);
+rating = JSON.parse(rating);
+let ratingValues = Object.values(rating);
+new Chart(ctx, {
+    type: 'radar',
+    data: {
+      labels: names,
+      datasets: [{
+        label: 'Évaluation',
+        
+        data: ratingValues,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        
+      }
+    }
+  });
+  ctx.style.width = '500px';
+  ctx.style.height = '500px';
+</script>
 
     <p class="my-3">
         {% if quiz %}

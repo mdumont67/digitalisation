@@ -16,7 +16,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
         new Get(normalizationContext: ['groups' => 'quiz:item']),
         new GetCollection(normalizationContext: ['groups' => 'quiz:list'])
     ],
-    order: ['id' => 'DESC'],
+    order: ['id' => 'ASC'],
     paginationEnabled: false,
 )]
 #[ORM\Entity(repositoryClass: QuizQuestionsRepository::class)]

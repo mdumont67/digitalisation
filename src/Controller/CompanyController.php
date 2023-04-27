@@ -57,8 +57,10 @@ class CompanyController extends AbstractController
 
         $quiz = $this->quizRepo->findOneBy(['company' => $company], ['id'=> 'DESC']);
         $axisRating = []; 
+        $axisName = [];
         $axis = $this->axisRepo->findAll();
         foreach ($axis as $axe) {
+            array_push($axisName, $axe->getLabel());
             $rating = null;
             $nb = 0;
             $questions = $this->questionRepo->findAxisQuestions($axe);
@@ -70,14 +72,15 @@ class CompanyController extends AbstractController
                 }
             }
             if ($nb) {
-                $axisRating[$axe->getId()] = number_format(($rating/$nb), 2 );
+                $axisRating[$axe->getId()] = floatval(number_format(($rating/$nb), 2 ));
             }
         }
         return $this->render('company/details.html.twig',[
             'company'=> $company,
             'axis'=> $axis,
             'quiz' => $quiz,
-            'axisRating' => $axisRating
+            'axisRating' => $axisRating,
+            'axisName' => $axisName,
         ]);
     }
 }
